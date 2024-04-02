@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Drag and Drop Example</title>
+  <style>
+    .container {
+      width: 200px;
+      height: 200px;
+      border: 1px solid black;
+      margin: 10px;
+      float: left;
+    }
+    .draggable {
+      width: 50px;
+      height: 50px;
+      background-color: blue;
+      color: white;
+      text-align: center;
+      line-height: 50px;
+      cursor: move;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container" id="container1">стадия 1
+  <div class="draggable" draggable="true" id="draggable">Drag Me!</div>
+  <div class="draggable" draggable="true" id="draggable1">Me!</div>
+</div>
+
+<div class="container" id="container2">стадия 2</div>
+<div class="container" id="container3">стадия 3</div>
+<div class="container" id="container4">стадия 4</div>
+
+<script>
+ fetch('http://127.0.0.1:8000/users/0', {
+  method: 'GET',
+  headers: {
+    'Content-Type': 'application/json'
+  }
+})
+.then(response => {
+  if (!response.ok) {
+    throw new Error('Network response was not ok');
+  }
+  return response.json();
+})
+.then(data => {
+  console.log(data);
+})
+.catch(error => {
+  console.error('There was a problem with the fetch operation:', error);
+});
+
+
+  const draggable = document.getElementById('draggable');
+  const draggable1 = document.getElementById('draggable1');
+  
+  draggable.addEventListener('dragstart', function(e) {
+    e.dataTransfer.setData('text/plain', e.target.id);
+  });
+  draggable1.addEventListener('dragstart', function(e) {
+    e.dataTransfer.setData('text/plain', e.target.id);
+  });
+
+  const containers = document.querySelectorAll('.container');
+
+  containers.forEach(container => {
+    container.addEventListener('dragover', function(e) {
+      e.preventDefault();
+    });
+
+    container.addEventListener('drop', function(e) {
+      e.preventDefault();
+      alert(e.target.id)
+      const data = e.dataTransfer.getData('text/plain');
+      const draggableElement = document.getElementById(data);
+      container.appendChild(draggableElement);
+    });
+  });
+</script>
+
+</body>
+</html>
