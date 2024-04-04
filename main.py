@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import List
 from fastapi.middleware.cors import CORSMiddleware
-
+import jwt
 app = FastAPI(
 	title = "MyTrello"
 )
@@ -39,3 +39,25 @@ def get_hello(user: List[User]):
     fake_users.extend(user)
     print(fake_users)
     return {"status":200,"data":fake_users}
+
+
+
+
+secret_key = "my_securyty_key"
+
+token = jwt.encode(
+    payload = user,
+    key = key,
+    algorithm = "HS256"
+)
+
+def get_token(user: User) ->str:
+    token = jwt.encode(
+        payload = user,
+        key = "key",
+        algorithm = "HS256"
+    )
+    return token
+
+def get_dec_token(token: str) ->User:
+    return jwt.decode(token,"key",algorithms=["HS256"])
