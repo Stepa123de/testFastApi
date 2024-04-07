@@ -152,3 +152,155 @@
     </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kanban Board</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    .kanban-board {
+        display: flex;
+    }
+
+    .column {
+        flex: 1;
+        min-width: 200px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin: 10px;
+        background-color: #f9f9f9;
+    }
+
+    .item {
+        background-color: #fff;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin: 10px 0;
+        cursor: pointer;
+    }
+
+    .add-task-button {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .modal {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        z-index: 999;
+    }
+
+    .modal input {
+        width: 100%;
+        padding: 5px;
+        margin-bottom: 10px;
+    }
+
+    .modal button {
+        background-color: #007bff;
+        color: #fff;
+        padding: 5px 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+<div class="kanban-board">
+    <div class="column" id="todo" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <h2>ToDo</h2>
+        <div class="item" id="task1" draggable="true" ondragstart="drag(event)">Task 1</div>
+    </div>
+    <div class="column" id="in-progress" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <h2>In Progress</h2>
+        <div class="item" id="task2" draggable="true" ondragstart="drag(event)">Task 2</div>
+    </div>
+    <div class="column" id="testing" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <h2>Testing</h2>
+        <div class="item" id="task3" draggable="true" ondragstart="drag(event)">Task 3</div>
+    </div>
+    <div class="column" id="done" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <h2>Done</h2>
+        <div class="item" id="task4" draggable="true" ondragstart="drag(event)">Task 4</div>
+    </div>
+</div>
+
+<button class="add-task-button" onclick="openModal()">Добавить</button>
+
+<div id="modal" class="modal">
+    <input type="text" id="taskName" placeholder="Введите название задачи">
+    <button onclick="addTask()">Добавить задачу</button>
+</div>
+
+<script>
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    const data = ev.dataTransfer.getData("text");
+    const draggedItem = document.getElementById(data);
+    if (draggedItem.classList.contains('item')) {
+        const column = ev.target.closest('.column');
+        if (column) {
+            column.appendChild(draggedItem);
+        }
+    }
+}
+
+function openModal() {
+    const modal = document.getElementById('modal');
+    modal.style.display = 'block';
+}
+
+function addTask() {
+    const taskNameInput = document.getElementById('taskName');
+    const taskName = taskNameInput.value.trim();
+    if (taskName) {
+        const newTask = document.createElement('div');
+        newTask.className = 'item';
+        newTask.draggable = true;
+        newTask.textContent = taskName;
+        newTask.addEventListener('dragstart', drag);
+    
+        const todoColumn = document.getElementById('todo');
+        todoColumn.appendChild(newTask);
+    
+        closeAddTaskModal();
+    }
+}
+
+function closeAddTaskModal() {
+    const modal = document.getElementById('modal');
+    modal.style.display = 'none';
+}
+</script>
+</body>
+</html>
