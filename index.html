@@ -1,84 +1,154 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Drag and Drop Example</title>
-  <style>
-    .container {
-      width: 200px;
-      height: 200px;
-      border: 1px solid black;
-      margin: 10px;
-      float: left;
-    }
-    .draggable {
-      width: 50px;
-      height: 50px;
-      background-color: blue;
-      color: white;
-      text-align: center;
-      line-height: 50px;
-      cursor: move;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создание проекта</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        label, input, textarea, select, button {
+            display: block;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        .user-container {
+            margin-top: 10px;
+        }
+
+        .user {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 10px;
+            background-color: #f9f9f9;
+            border-radius: 3px;
+            margin-top: 5px;
+        }
+
+        .user button {
+            background-color: #ff0000;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
+    <form id="projectForm">
+        <h1>Создать проект</h1>
+        <label for="project_name">Название проекта:</label>
+        <input type="text" id="project_name" name="project_name">
+        
+        <label for="project_description">Описание проекта:</label>
+        <textarea id="project_description" name="project_description" rows="4"></textarea>
 
-<div class="container" id="container1">стадия 1
-  <div class="draggable" draggable="true" id="draggable">Drag Me!</div>
-  <div class="draggable" draggable="true" id="draggable1">Me!</div>
-</div>
+        <label for="project_users_dropdown">Выбрать пользователя:</label>
+        <select id="project_users_dropdown"></select>
+        <button type="button" id="addUserBtn">Добавить</button>
 
-<div class="container" id="container2">стадия 2</div>
-<div class="container" id="container3">стадия 3</div>
-<div class="container" id="container4">стадия 4</div>
+        <div id="selectedUsers" class="user-container"></div>
+        
+        <button type="button" id="createProjectBtn">Создать</button>
+    </form>
 
-<script>
- fetch('http://127.0.0.1:8000/users/0', {
-  method: 'GET',
-  headers: {
-    'Content-Type': 'application/json'
-  }
-})
-.then(response => {
-  if (!response.ok) {
-    throw new Error('Network response was not ok');
-  }
-  return response.json();
-})
-.then(data => {
-  console.log(data);
-})
-.catch(error => {
-  console.error('There was a problem with the fetch operation:', error);
-});
+    <script>
+        const users = [
+            { id: 1, name: "Пользователь 1", role: "Пользователь" },
+            { id: 2, name: "Пользователь 2", role: "Пользователь" },
+            { id: 3, name: "Пользователь 3", role: "Пользователь" }
+        ];
+        
+        const projectUsersDropdown = document.getElementById('project_users_dropdown');
+        const selectedUsersContainer = document.getElementById('selectedUsers');
 
+        users.forEach(user => {
+            const option = document.createElement('option');
+            option.value = user.id;
+            option.textContent = user.name;
+            projectUsersDropdown.appendChild(option);
+        });
 
-  const draggable = document.getElementById('draggable');
-  const draggable1 = document.getElementById('draggable1');
-  
-  draggable.addEventListener('dragstart', function(e) {
-    e.dataTransfer.setData('text/plain', e.target.id);
-  });
-  draggable1.addEventListener('dragstart', function(e) {
-    e.dataTransfer.setData('text/plain', e.target.id);
-  });
+        const selectedUsers = [];
 
-  const containers = document.querySelectorAll('.container');
+        document.getElementById('addUserBtn').addEventListener('click', function() {
+            const selectedUser = users.find(user => user.id === parseInt(projectUsersDropdown.value));
+            if (!selectedUsers.includes(selectedUser)) {
+                selectedUsers.push(selectedUser);
 
-  containers.forEach(container => {
-    container.addEventListener('dragover', function(e) {
-      e.preventDefault();
-    });
+                const userDiv = document.createElement('div');
+                userDiv.className = 'user';
 
-    container.addEventListener('drop', function(e) {
-      e.preventDefault();
-      alert(e.target.id)
-      const data = e.dataTransfer.getData('text/plain');
-      const draggableElement = document.getElementById(data);
-      container.appendChild(draggableElement);
-    });
-  });
-</script>
+                const userInfoSpan = document.createElement('span');
+                userInfoSpan.textContent = selectedUser.name;
+                userDiv.appendChild(userInfoSpan);
 
+                const adminBtn = document.createElement('button');
+                adminBtn.textContent = 'Админ';
+                adminBtn.addEventListener('click', function() {
+                    if (userInfoSpan.classList.contains('admin')) {
+                        userInfoSpan.classList.remove('admin');
+                        selectedUser.role = 'Пользователь';
+                    } else {
+                        userInfoSpan.classList.add('admin');
+                        selectedUser.role = 'Админ';
+                    }
+                });
+                userDiv.appendChild(adminBtn);
+
+                const removeBtn = document.createElement('button');
+                removeBtn.textContent = 'Удалить';
+                removeBtn.addEventListener('click', function() {
+                    const index = selectedUsers.indexOf(selectedUser);
+                    if (index > -1) {
+                        selectedUsers.splice(index, 1);
+                        selectedUsersContainer.removeChild(userDiv);
+                    }
+                });
+                userDiv.appendChild(removeBtn);
+
+                selectedUsersContainer.appendChild(userDiv);
+            }
+        });
+
+        document.getElementById('createProjectBtn').addEventListener('click', function() {
+            const projectName = document.getElementById('project_name').value;
+            const projectDescription = document.getElementById('project_description').value;
+
+            const usersWithRoles = selectedUsers.map(user => {
+                return `${user.name} - ${user.role}`;
+            });
+            
+            console.log('Название проекта:', projectName);
+            console.log('Описание проекта:', projectDescription);
+            console.log('Участники проекта:', usersWithRoles);
+        });
+    </script>
 </body>
 </html>
