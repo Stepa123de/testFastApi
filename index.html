@@ -1,306 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Создание проекта</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0f0f0;
-        }
-
-        form {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
-            width: 100%;
-        }
-
-        label, input, textarea, select, button {
-            display: block;
-            margin-bottom: 10px;
-            width: 100%;
-        }
-
-        button {
-            cursor: pointer;
-        }
-
-        .user-container {
-            margin-top: 10px;
-        }
-
-        .user {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 5px 10px;
-            background-color: #f9f9f9;
-            border-radius: 3px;
-            margin-top: 5px;
-        }
-
-        .user button {
-            background-color: #ff0000;
-            color: #fff;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 3px;
-            cursor: pointer;
-        }
-    </style>
-</head>
-<body>
-    <form id="projectForm">
-        <h1>Создать проект</h1>
-        <label for="project_name">Название проекта:</label>
-        <input type="text" id="project_name" name="project_name">
-        
-        <label for="project_description">Описание проекта:</label>
-        <textarea id="project_description" name="project_description" rows="4"></textarea>
-
-        <label for="project_users_dropdown">Выбрать пользователя:</label>
-        <select id="project_users_dropdown"></select>
-        <button type="button" id="addUserBtn">Добавить</button>
-
-        <div id="selectedUsers" class="user-container"></div>
-        
-        <button type="button" id="createProjectBtn">Создать</button>
-    </form>
-
-    <script>
-        const users = [
-            { id: 1, name: "Пользователь 1", role: "Пользователь" },
-            { id: 2, name: "Пользователь 2", role: "Пользователь" },
-            { id: 3, name: "Пользователь 3", role: "Пользователь" }
-        ];
-        
-        const projectUsersDropdown = document.getElementById('project_users_dropdown');
-        const selectedUsersContainer = document.getElementById('selectedUsers');
-
-        users.forEach(user => {
-            const option = document.createElement('option');
-            option.value = user.id;
-            option.textContent = user.name;
-            projectUsersDropdown.appendChild(option);
-        });
-
-        const selectedUsers = [];
-
-        document.getElementById('addUserBtn').addEventListener('click', function() {
-            const selectedUser = users.find(user => user.id === parseInt(projectUsersDropdown.value));
-            if (!selectedUsers.includes(selectedUser)) {
-                selectedUsers.push(selectedUser);
-
-                const userDiv = document.createElement('div');
-                userDiv.className = 'user';
-
-                const userInfoSpan = document.createElement('span');
-                userInfoSpan.textContent = selectedUser.name;
-                userDiv.appendChild(userInfoSpan);
-
-                const adminBtn = document.createElement('button');
-                adminBtn.textContent = 'Админ';
-                adminBtn.addEventListener('click', function() {
-                    if (userInfoSpan.classList.contains('admin')) {
-                        userInfoSpan.classList.remove('admin');
-                        selectedUser.role = 'Пользователь';
-                    } else {
-                        userInfoSpan.classList.add('admin');
-                        selectedUser.role = 'Админ';
-                    }
-                });
-                userDiv.appendChild(adminBtn);
-
-                const removeBtn = document.createElement('button');
-                removeBtn.textContent = 'Удалить';
-                removeBtn.addEventListener('click', function() {
-                    const index = selectedUsers.indexOf(selectedUser);
-                    if (index > -1) {
-                        selectedUsers.splice(index, 1);
-                        selectedUsersContainer.removeChild(userDiv);
-                    }
-                });
-                userDiv.appendChild(removeBtn);
-
-                selectedUsersContainer.appendChild(userDiv);
-            }
-        });
-
-        document.getElementById('createProjectBtn').addEventListener('click', function() {
-            const projectName = document.getElementById('project_name').value;
-            const projectDescription = document.getElementById('project_description').value;
-
-            const usersWithRoles = selectedUsers.map(user => {
-                return `${user.name} - ${user.role}`;
-            });
-            
-            console.log('Название проекта:', projectName);
-            console.log('Описание проекта:', projectDescription);
-            console.log('Участники проекта:', usersWithRoles);
-        });
-    </script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kanban Board</title>
+<title>Мой приложение</title>
 <style>
     body {
         font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
     }
-
-    .kanban-board {
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 24px;
+    }
+    .dates {
         display: flex;
     }
-
-    .column {
-        flex: 1;
-        min-width: 200px;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        margin: 10px;
-        background-color: #f9f9f9;
+    .dates span {
+        margin-right: 20px;
+        font-size: 16px;
     }
-
-    .item {
-        background-color: #fff;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        margin: 10px 0;
-        cursor: pointer;
+    .main-content {
+        display: flex;
     }
-
-    .add-task-button {
-        position: fixed;
-        bottom: 10px;
-        right: 10px;
-        background-color: #007bff;
-        color: #fff;
-        padding: 10px 15px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
+    .sidebar {
+        flex: 30%;
+        padding-right: 20px;
     }
-
-    .modal {
-        display: none;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        padding: 20px;
-        background-color: #fff;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        z-index: 999;
+    .main-text {
+        flex: 70%;
     }
-
-    .modal input {
-        width: 100%;
-        padding: 5px;
-        margin-bottom: 10px;
-    }
-
-    .modal button {
-        background-color: #007bff;
-        color: #fff;
-        padding: 5px 10px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
+    .main-text h2 {
+        font-size: 20px;
+        margin-top: 0;
     }
 </style>
 </head>
 <body>
-<div class="kanban-board">
-    <div class="column" id="todo" ondrop="drop(event)" ondragover="allowDrop(event)">
-        <h2>ToDo</h2>
-        <div class="item" id="task1" draggable="true" ondragstart="drag(event)">Task 1</div>
+    <div class="container">
+        <div class="header">
+            <h1>Заголовок вашего приложения</h1>
+            <div class="dates">
+                <span>Дата 1</span>
+                <span>Дата 2</span>
+                <span>Дата 3</span>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="sidebar">
+                <!-- Ваш текстовый блок здесь -->
+            </div>
+            <div class="main-text">
+                <h2>Заголовок основной части</h2>
+                <!-- Здесь текст основной части -->
+            </div>
+        </div>
     </div>
-    <div class="column" id="in-progress" ondrop="drop(event)" ondragover="allowDrop(event)">
-        <h2>In Progress</h2>
-        <div class="item" id="task2" draggable="true" ondragstart="drag(event)">Task 2</div>
-    </div>
-    <div class="column" id="testing" ondrop="drop(event)" ondragover="allowDrop(event)">
-        <h2>Testing</h2>
-        <div class="item" id="task3" draggable="true" ondragstart="drag(event)">Task 3</div>
-    </div>
-    <div class="column" id="done" ondrop="drop(event)" ondragover="allowDrop(event)">
-        <h2>Done</h2>
-        <div class="item" id="task4" draggable="true" ondragstart="drag(event)">Task 4</div>
-    </div>
-</div>
-
-<button class="add-task-button" onclick="openModal()">Добавить</button>
-
-<div id="modal" class="modal">
-    <input type="text" id="taskName" placeholder="Введите название задачи">
-    <button onclick="addTask()">Добавить задачу</button>
-</div>
-
-<script>
-function allowDrop(ev) {
-    ev.preventDefault();
-}
-
-function drag(ev) {
-    ev.dataTransfer.setData("text", ev.target.id);
-}
-
-function drop(ev) {
-    ev.preventDefault();
-    const data = ev.dataTransfer.getData("text");
-    const draggedItem = document.getElementById(data);
-    if (draggedItem.classList.contains('item')) {
-        const column = ev.target.closest('.column');
-        if (column) {
-            column.appendChild(draggedItem);
-        }
-    }
-}
-
-function openModal() {
-    const modal = document.getElementById('modal');
-    modal.style.display = 'block';
-}
-
-function addTask() {
-    const taskNameInput = document.getElementById('taskName');
-    const taskName = taskNameInput.value.trim();
-    if (taskName) {
-        const newTask = document.createElement('div');
-        newTask.className = 'item';
-        newTask.draggable = true;
-        newTask.textContent = taskName;
-        newTask.addEventListener('dragstart', drag);
-    
-        const todoColumn = document.getElementById('todo');
-        todoColumn.appendChild(newTask);
-    
-        closeAddTaskModal();
-    }
-}
-
-function closeAddTaskModal() {
-    const modal = document.getElementById('modal');
-    modal.style.display = 'none';
-}
-</script>
 </body>
 </html>
