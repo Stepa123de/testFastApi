@@ -1,3 +1,3 @@
 # Trelo аналог
 
-### Зпутить run.bat (double click)
+### Зпутить debug.bat (double click)
