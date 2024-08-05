@@ -1,1 +1,3 @@
-uvicorn main:app --reload
+# Trelo аналог
+
+### Зпутить run.bat (double click)

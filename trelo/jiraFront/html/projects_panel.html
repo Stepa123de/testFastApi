@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>projects_panel</title>
+    <link rel="stylesheet" href="static/css/projects_panel.css">
+    <script src="static/js/projects_panel.js"></script>
+    <script src="static/utils/requests.js"></script>
+    <link rel="icon" type="image/x-icon" href="/static/utils/trello_icon.ico">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 id="project-name">Заголовок вашего приложения</h1>
+            <div class="dates">
+                <p></p>
+                <input type='date' id='date-create' disabled></input>
+                <p></p>
+                <input type='date' id='date-update' disabled></input>
+                <p></p>
+                <input type='date' id='date-dead'></input>
+                <button onclick='back()'>Ctrl + Z</button>
+                <button onclick='save()'>Ctrl + S</button>
+                <button onclick='delait_project()'>Delete</button>
+                <button onclick='to_tasks()'>К Задачам</button>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="sidebar">
+                <h2>Боковая панель</h2>
+                <div>
+                    <h3>Краткое описание</h3>
+                    <textarea class="textarea" id="short-description">Stats</textarea>
+                </div>
+                <div>
+                    <h3>Пользователи</h3>
+                    <div id="users-container"></div>
+                    <div class="user">
+                        <button onclick="add_user_from_select()">Add</button>
+                        <select id="user-select"></select>
+                    </div>
+                </div>
+                <div>
+                    <h3>Задачи</h3>
+                    <p id="task_stats">Stats</p>
+                    <div id="task-container"></div>
+                </div>
+            </div>
+            <div class="main-text">
+                <h2>Техническое Задание</h2>
+                <textarea id="description"></textarea>
+            </div>
+        </div>
+    </div>
+    <div id="modal" class="modal">
+        <input type="text" id="taskName" placeholder="Введите название задачи">
+        <textarea id="taskDescription" placeholder="Введите описание задачи"></textarea>
+        <select class="modals" id="choes_task_user">
+            <option value="0">No User</option>
+        </select>
+        <div class="container">
+            <button class="btn_option" onclick="saveTask()">Save</button>
+            <button class="btn_option" onclick="deleteTask()">Delete</button>
+            <button class="btn_option" onclick="closeTaskMenu()">Close</button>
+        </div>
+    </div>
+</body>
+</html>

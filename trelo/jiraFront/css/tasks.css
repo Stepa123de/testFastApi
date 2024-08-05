@@ -1,0 +1,145 @@
+h1{
+	float: left;
+}
+
+header{
+	overflow: hidden;
+}
+
+.btn_move{
+	border-radius: 10px;
+	text-align: center;
+	display: block;
+	float: right;
+	width: 100px;
+	height: 60px;
+	margin-left: 5px;
+	margin-top: 5px;
+}
+
+.btn_move:hover {
+    transform: scale(1.1);
+}
+
+body {
+	font-family: Arial, sans-serif;
+}
+
+.kanban-board {
+    display: flex;
+}
+
+.column {
+    position: relative;
+    flex: 1;
+    min-width: 200px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 10px;
+    background-color: #f9f9f9;
+}
+
+.item {
+    position: relative;
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+#add {
+    background: url('../utils/add.ico') no-repeat center / contain;
+    border: 0;
+}
+#menu {
+    background: url('../utils/menu.ico') no-repeat center / contain;
+    border: 0;
+}
+#back {
+    background: url('../utils/back.ico') no-repeat center / contain;
+    border: 0;
+}
+#exit {
+    background: url('../utils/out.ico') no-repeat center / contain;
+    border: 0;
+}
+
+.not_my_item {
+    position: relative;
+    background-color: #c4c4c4;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    z-index: 999;
+}
+
+.modal input{
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+select{
+	size:3;
+	display: block;
+	margin-bottom: 10px;
+	width: 100%;
+}
+
+.modal button{
+    background-color: #007bff;
+    color: #fff;
+    margin-top: 10px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10dp;
+    padding: 20dp;
+}
+
+.drag_con {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.btn_option{
+    margin: 5px;
+}
+
+.witch_user {
+    position: absolute;
+    bottom: 1px;
+    right: 2px;
+    font-size: 15px;
+    font-style: italic;
+}
+
+textarea {
+    width: 100%;
+    height: 15vh;
+    margin: 0;
+    padding: 0;
+}

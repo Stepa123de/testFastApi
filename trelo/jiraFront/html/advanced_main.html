@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+    <title>main</title>
+    <link rel="stylesheet" href="static/css/advanced_main.css">
+    <script src="static/utils/requests.js"></script>
+    <script type="text/javascript" src="static/utils/chart.js"></script>
+    <script src="static/js/advanced_main.js"></script>
+    <link rel="icon" type="image/x-icon" href="/static/utils/trello_icon.ico">
+</head>
+ 
+<body>
+    <header>
+      <button class="btn_move exit" id="exit"></button>
+      <button class="btn_move user_add" id="users"></button>
+      <div class="btn_move text" ><h1 id="header" ></h1></div>
+    </header>
+    <div class = "task_filter" id="task_filter">
+        <div>
+            Фильтры:
+        </div>
+        <div class="project_filter">
+            <a>Проект</a>
+            <select id="project_pick">
+                <option value="-1">Все</option>
+            </select>
+        </div>
+        <div class="user_filter">
+            <a>Пользователь</a>
+            <select id="user_pick">
+                <option value="-1">Все</option>
+                <option value="0">Не назначено</option>
+            </select>
+        </div>
+    </div>
+    <div class="kanban-board">
+        <div class="column" id="state0" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <h2>Не начата</h2>
+        </div>
+        <div class="column" id="state1" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <h2>В работе</h2>
+        </div>
+        <div class="column" id="state2" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <h2>Тестирование</h2>
+        </div>
+        <div class="column" id="state3" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <h2>Завершена</h2>
+        </div>
+        </div>
+</body>
+ 
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+    <title>login</title>
+    <link rel="stylesheet" href="static/css/login.css">
+    <script src="static/utils/requests.js"></script>
+    <script src="static/js/login.js"></script>
+    <link rel="icon" type="image/x-icon" href="/static/utils/trello_icon.ico">
+</head>
+ 
+<body>
+    <div class="main">
+        <h3>Enter your login credentials</h3>
+        <form action="">
+            <label for="first">
+                  Username:
+              </label>
+            <input type="text"
+                   id="login"
+                   name="login"
+                   placeholder="Enter your Username" required>
+ 
+            <label for="password">
+                  Password:
+              </label>
+            <input type="password"
+                   id="password"
+                   name="password"
+                   placeholder="Enter your Password" required>
+ 
+            <div class="wrap">
+                <button type="button" id="login_button">
+                    Submit
+                </button>
+            </div>
+        </form>
+        <p>Not registered? 
+              <a href="static/utils/settings.mp4"
+               style="text-decoration: none;">
+                Create an account
+            </a>
+        </p>
+    </div>
+</body>
+ 
+</html>

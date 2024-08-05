@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+    <title>tasks</title>
+    <link rel="stylesheet" href="static/css/tasks.css">
+    <script src="static/utils/requests.js"></script>
+    <script src="static/js/tasks.js"></script>
+    <link rel="icon" type="image/x-icon" href="/static/utils/trello_icon.ico">
+</head>
+ 
+<body>
+    <header>
+      <h1 id="header">Header</h1>
+      <button class = "btn_move" id="exit"></button>
+      <button class = "btn_move" id="add"></button>
+      <button class = "btn_move" id="menu"></button>
+      <button class = "btn_move" id="back"></button>
+    </header>
+    <div class="kanban-board">
+    <div class="column" id="state0" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <h2>Не начата</h2>
+    </div>
+    <div class="column" id="state1" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <h2>В работе</h2>
+    </div>
+    <div class="column" id="state2" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <h2>Тестирование</h2>
+    </div>
+    <div class="column" id="state3" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <h2>Завершена</h2>
+    </div>
+    </div>
+
+    <div id="task_menu" class="modal">
+        <input type="text" id="update_task_name" placeholder="Введите название задачи">
+        <textarea id="update_task_description" placeholder="Введите описание задачи"></textarea>
+        <select class="modals" id="choes_task_user_change">
+            <option value="0">No User</option>
+        </select>
+        <div class="container">
+            <button class="btn_option" onclick="updateTask()">Save</button>
+            <button class="btn_option" onclick="dell_task()">Delete</button>
+            <button class="btn_option" onclick="closeTaskMenu()">Close</button>
+        </div>
+    </div>
+
+    <div id="modal" class="modal">
+        <input type="text" id="taskName" placeholder="Введите название задачи">
+        <textarea id="taskDescription" placeholder="Введите описание задачи"></textarea>
+        <select class="modals" id="choes_task_user">
+            <option value="0">No User</option>
+        </select>
+        <div class="container">
+            <button class="btn_option" onclick="addTask()">Add task</button>
+            <button class="btn_option" onclick="closeAddTaskModal()">Close</button>
+        </div>
+    </div>
+</body>
+ 
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/css/project.css">
+    <script src="static/utils/requests.js"></script>
+    <script src="static/js/users.js"></script>
+    <link rel="icon" type="image/x-icon" href="/static/utils/trello_icon.ico">
+    <title>Создание проекта</title>
+</head>
+<body>
+    <form style="max-width: 700px;">
+        <h1>Пользователи</h1>
+        <table>
+            <thead>
+                <tr>
+                    <td>id</th>
+                    <td>user</th>
+                    <td>role</th>
+                    <td>password</th>
+                    <td>delete</th>
+                </tr>
+            </thead>
+            <tbody id = 'users-table'>
+                
+            </tbody>
+        </table>
+        <button id = 'change' onclick="save()">
+            Изменить
+        </button>
+        <table id = "new-user">
+            <tbody>
+                <tr>
+                    <td>
+                        <button onclick="add_user()" id = "add">Добавить</button>
+                    </td>
+                    <td><input id = "name" type="text"></td>
+                    <td>
+                        <select id = "role">
+                            <option value="1">admin</option>
+                            <option value="2">support</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input id = "password" type="text">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button type = "button" id = 'exit' onclick="back_to_menu()">
+            Вернуться
+        </button>
+    </form>
+</body>
+</html>

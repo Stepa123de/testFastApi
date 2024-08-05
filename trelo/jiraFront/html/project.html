@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/css/project.css">
+    <script src="static/utils/requests.js"></script>
+    <script src="static/js/project.js"></script>
+    <link rel="icon" type="image/x-icon" href="/static/utils/trello_icon.ico">
+    <title>Создание проекта</title>
+</head>
+<body>
+    <form >
+        <h1>Создать проект</h1>
+        <label for="project_name">Название проекта:</label>
+        <input type="text" id="project_name" name="project_name">
+        
+        <label for="project_description">Описание проекта:</label>
+        <textarea id="project_description" name="project_description" rows="4"></textarea>
+
+        <label for="project_users_dropdown">Выбрать пользователя:</label>
+        <select id="project_users_dropdown"></select>
+        <button type="button" id="addUserBtn">Добавить</button>
+
+        <div id="selectedUsers" class="user-container"></div>
+        <p>Дата создания</p>
+        <input type="date" id="create-date">
+        <p>Дедлайн</p>
+        <input type="date"  id="deadline">
+        
+        <button type="button" id="createProjectBtn">Создать</button>
+        <button type="button" onclick="closeCreate()" id="closeCreateProjectBtn">Назад</button>
+        <button type="button" id="dell_btn" class="dell_btn" onclick="dellProject()">Удалить</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,135 @@
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+.container{
+	display: flex;
+	flex-wrap: wrap;
+    grid-template-columns: auto auto auto auto auto;
+	gap: 10dp;
+	padding: 20dp;
+}
+
+.btn_move{
+	text-align: center;
+	display: block;
+	float: right;
+	width: 100px;
+	height: 60px;
+	margin: 10px;
+}
+
+
+.btn_option {
+    margin-right: 10px;
+}
+.user_add {
+    background: url('../utils/user.ico') no-repeat center / contain;
+    border: 0;
+}
+.exit {
+    background: url('../utils/out.ico') no-repeat center / contain;
+    border: 0;
+}
+
+.btn{
+	width: 15vw;
+    border-radius: 10px;
+	text-align: center;
+	background-color: #a6caf0;
+	border: 0px solid #333;
+	box-shadow: 5px 5px 5px #79afe8;
+	padding: 10px;
+	margin: 10px;
+}
+.btn_add {
+    font-size: 50px;
+    margin: 0;
+}
+
+.text{
+    text-align: center;
+    vertical-align: middle;
+    margin: 10px;
+	float: right;
+}
+
+h1 {
+    display: inline-block;
+}
+
+header{
+	overflow: hidden;
+}
+
+#exit{
+	display: block;
+	float: right;
+	width: 100px;
+	height: 60px;
+	margin: 10px;
+}
+
+.btn:hover {
+    background-color: #247ad6;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    z-index: 999;
+}
+
+.modal input{
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.modal button{
+    background-color: #007bff;
+    color: #fff;
+    margin-top: 10px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.metric {
+    height: 100px;
+}
+
+
+.btn {
+    border-radius: 10px;
+    text-align: center;
+    background-color: #ffa07a; /* Update button color */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    box-shadow: 3px 3px 3px #d8a17f; /* Update box-shadow */
+    cursor: pointer;
+    transition: all 0.3s ease; /* Add smooth transition */
+}
+
+.btn:hover {
+    background-color: #ff7f50; /* Update hover color */
+}
+
+
+
+.modal button:hover {
+    background-color: #0056b3; /* Update hover color */
+}

@@ -1,0 +1,113 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+}
+
+label, input, textarea, select, button {
+    display: block;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+button {
+    cursor: pointer;
+}
+
+.user-container {
+    margin-top: 10px;
+}
+
+.user {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px;
+    background-color: #f9f9f9;
+    border-radius: 3px;
+    margin-top: 5px;
+}
+
+.user button {
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.dell_btn {
+    display: none;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    background-color: #f0f0f0;
+}
+
+thead td {
+    background: #AFCDE7;
+    color: white;
+}
+
+th, td:first-child {
+background: #AFCDE7;
+color: white;
+padding: 10px 20px;
+}
+th, td {
+border-style: solid;
+border-width: 0 1px 1px 0;
+border-color: white;
+}
+td {
+background: #D8E6F3;
+}
+th:first-child, td:first-child {
+text-align: left;
+background: #AFCDE7;
+color: white;
+}
+td {
+    padding: 10px;
+}
+#change, #exit {
+    margin-top: 10px;
+}
+td input, td select {
+    width: 90%;
+    height: 3vh;
+    margin: auto;
+    align-self: center;
+}
+
+#add {
+    margin: auto;
+    width: 100%;
+    height: 3vh;
+    align-self: center;
+}
+
+td:last-child button {
+    height: 4vh;
+    width: 4vh;
+    align-self: center;
+    margin: auto;
+}

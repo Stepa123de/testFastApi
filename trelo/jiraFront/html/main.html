@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+    <title>main</title>
+    <link rel="stylesheet" href="static/css/main.css">
+    <script src="static/utils/requests.js"></script>
+    <script type="text/javascript" src="static/utils/chart.js"></script>
+    <script src="static/js/main.js"></script>
+    <link rel="icon" type="image/x-icon" href="/static/utils/trello_icon.ico">
+</head>
+ 
+<body>
+    <header>
+      <button class="btn_move exit" id="exit"></button>
+      <button class="btn_move user_add" id="users"></button>
+      <div class="btn_move text" ><h1 id="header" ></h1></div>
+    </header>
+    <div class="container" id="container">
+    </div>
+    <div id="modal" class="modal">
+        <input type="text" id="userName" placeholder="Введите имя">
+        <input type="text" id="userPassword" placeholder="Введите пароль">
+        <input type="text" id="userRole" placeholder="Введите роль" value="support">
+        <div class="container">
+            <button class="btn_option" onclick="addUser()">Add user</button>
+            <button class="btn_option" onclick="closeAddUserDialog()">Back</button>
+        </div> 
+    </div>
+    <canvas id="myMetric" height="100vh"></canvas>
+</body>
+ 
+</html>
